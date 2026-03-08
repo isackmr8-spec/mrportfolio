@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR SMILEY | Professional Photography Portfolio</title>
+    <meta name="description" content="Mr Smiley - Professional photographer and videographer specializing in weddings, events, portraits, and creative visual storytelling.">
+    <meta name="keywords" content="photographer, videographer, wedding photography, event photography, portrait photography, video production">
+    <meta name="author" content="Mr Smiley">
+    <meta property="og:title" content="MR SMILEY | Professional Photography">
+    <meta property="og:description" content="Capturing unforgettable moments through professional photography and videography.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Theme Initialization -->
+    <script>
+        var savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📸</text></svg>">
+</head>
+<body>
+
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-container">
+            <div class="search-header">
+                <h2><i class="fas fa-search"></i> Search</h2>
+                <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="search-input-wrapper">
+                <input type="text" id="searchInput" placeholder="Search photos, videos, services...">
+            </div>
+            <div class="search-results">
+                <div class="search-suggestions">
+                    <a href="#portfolio" class="search-suggestion-item"><i class="fas fa-images"></i><span>Portfolio</span></a>
+                    <a href="#services" class="search-suggestion-item"><i class="fas fa-camera"></i><span>Services</span></a>
+                    <a href="#pricing" class="search-suggestion-item"><i class="fas fa-tag"></i><span>Pricing</span></a>
+                    <a href="#contact" class="search-suggestion-item"><i class="fas fa-envelope"></i><span>Contact</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Modal -->
+    <div class="download-modal" id="downloadModal">
+        <div class="download-container">
+            <div class="download-header">
+                <h3><i class="fas fa-download"></i> Download</h3>
+                <button class="download-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="download-preview">
+                <img id="downloadPreviewImg" src="" alt="Preview">
+            </div>
+            <div class="download-options">
+                <button class="btn-primary btn-full" onclick="downloadImage()"><i class="fas fa-download"></i> Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Private Gallery Modal -->
+    <div class="private-gallery-modal" id="privateGalleryModal">
+        <div class="private-gallery-container">
+            <div class="private-gallery-header">
+                <i class="fas fa-lock"></i>
+                <h3>Private Client Gallery</h3>
+                <p>Enter your access code to view your gallery</p>
+            </div>
+            <form class="private-gallery-form" onsubmit="accessGallery(event)">
+                <div class="form-group">
+                    <input type="password" id="accessCode" placeholder="Enter access code" required>
+                </div>
+                <button type="submit" class="btn-primary btn-full">
+                    <i class="fas fa-sign-in-alt"></i> Access Gallery
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo"><span class="logo-accent">MR</span>SMILEY</a>
+            <button class="menu-btn" id="menuToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#printing">Printing</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#booking" class="btn-nav">Book Now</a></li>
+                <li><button id="searchBtn" class="nav-icon-btn" title="Search"><i class="fas fa-search"></i></button></li>
+                <li><button id="privateGalleryBtn" class="nav-icon-btn" title="Client Login"><i class="fas fa-user-lock"></i></button></li>
+                <li><button id="themeToggle" class="theme-toggle"><i class="fas fa-moon"></i></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+            <div class="hero-shape hero-shape-3"></div>
+        </div>
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Professional Photography Services
+            </div>
+            <h1 class="hero-title">
+                <span class="line">MR SMILEY</span>
+                <span class="line gradient-text">PORTFOLIO</span>
+            </h1>
+            <p class="hero-subtitle">Capturing unforgettable moments through professional photography and videography. Transform your special events into beautiful visual stories.</p>
+            <div class="hero-buttons">
+                <a href="#portfolio" class="btn-primary">View Portfolio <i class="fas fa-arrow-right"></i></a>
+                <a href="#booking" class="btn-secondary">Book a Session</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><span class="hero-stat-number">10+</span><span class="hero-stat-label">Years Experience</span></div>
+                <div class="hero-stat"><span class="hero-stat-number">500+</span><span class="hero-stat-label">Happy Clients</span></div>
+                <div class="hero-stat"><span class="hero-stat-number">1000+</span><span class="hero-stat-label">Projects Done</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">Meet Mr Smiley</h2>
+                <p class="section-subtitle">Professional photographer and videographer</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop" alt="Mr Smiley">
+                    <div class="about-image-badge">
+                        <i class="fas fa-camera"></i>
+                        <span>Professional</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>Hello, I am Mr Smiley</h2>
+                    <p>A professional photographer and videographer specializing in capturing memorable moments. My passion is to transform ordinary events into beautiful visual stories.</p>
+                    <p>With over 10 years of experience in photography and videography, I've had the privilege of capturing hundreds of weddings, events, portraits, and creative projects.</p>
+                    <div class="about-skills">
+                        <div class="skill-item">
+                            <span class="skill-name">Photography</span>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Videography</span>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Photo Editing</span>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 92%"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Video Editing</span>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
+                        </div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item"><span class="stat-number">10+</span><span class="stat-label">Years</span></div>
+                        <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Clients</span></div>
+                        <div class="stat-item"><span class="stat-number">1000+</span><span class="stat-label">Projects</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What I Offer</span>
+                <h2 class="section-title">Services</h2>
+                <p class="section-subtitle">Professional photography and videography services</p>
+            </div>
+            
+            <div class="service-category">
+                <h3 class="service-category-title"><i class="fas fa-camera"></i> Photography Services</h3>
+                
+                <div class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-icon-large"><i class="fas fa-rings-wedding"></i></div>
+                        <div class="service-header-text">
+                            <h3>Wedding Photography</h3>
+                            <p>Complete wedding day coverage to capture your special day</p>
+                        </div>
+                        <a href="#booking" class="btn-primary">Book Now</a>
+                    </div>
+                    <div class="service-features">
+                        <h4><i class="fas fa-check-circle"></i> What's Included:</h4>
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i> Full day coverage</li>
+                            <li><i class="fas fa-angle-right"></i> 2 professional photographers</li>
+                            <li><i class="fas fa-angle-right"></i> 500+ edited photos</li>
+                            <li><i class="fas fa-angle-right"></i> Online gallery</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-icon-large"><i class="fas fa-calendar-star"></i></div>
+                        <div class="service-header-text">
+                            <h3>Event Photography</h3>
+                            <p>Professional coverage for all types of events</p>
+                        </div>
+                        <a href="#booking" class="btn-primary">Book Now</a>
+                    </div>
+                    <div class="service-features">
+                        <h4><i class="fas fa-check-circle"></i> What's Included:</h4>
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i> Full event coverage</li>
+                            <li><i class="fas fa-angle-right"></i> Professional photographer</li>
+                            <li><i class="fas fa-angle-right"></i> 50+ edited photos</li>
+                            <li><i class="fas fa-angle-right"></i> Quick delivery</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-icon-large"><i class="fas fa-user"></i></div>
+                        <div class="service-header-text">
+                            <h3>Portrait Photography</h3>
+                            <p>Stunning portrait sessions for individuals and groups</p>
+                        </div>
+                        <a href="#booking" class="btn-primary">Book Now</a>
+                    </div>
+                    <div class="service-features">
+                        <h4><i class="fas fa-check-circle"></i> What's Included:</h4>
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i> 1-2 hour session</li>
+                            <li><i class="fas fa-angle-right"></i> Multiple outfits</li>
+                            <li><i class="fas fa-angle-right"></i> 30+ edited photos</li>
+                            <li><i class="fas fa-angle-right"></i> Online gallery</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-icon-large"><i class="fas fa-tshirt"></i></div>
+                        <div class="service-header-text">
+                            <h3>Fashion Photography</h3>
+                            <p>Stylish fashion and product photography for brands</p>
+                        </div>
+                        <a href="#booking" class="btn-primary">Book Now</a>
+                    </div>
+                    <div class="service-features">
+                        <h4><i class="fas fa-check-circle"></i> What's Included:</h4>
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i> Professional studio</li>
+                            <li><i class="fas fa-angle-right"></i> Model direction</li>
+                            <li><i class="fas fa-angle-right"></i> Commercial rights</li>
+                            <li><i class="fas fa-angle-right"></i> Quick turnaround</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-category">
+                <h3 class="service-category-title"><i class="fas fa-video"></i> Videography Services</h3>
+                
+                <div class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-icon-large"><i class="fas fa-film"></i></div>
+                        <div class="service-header-text">
+                            <h3>Wedding Highlights</h3>
+                            <p>Beautiful cinematic wedding films</p>
+                        </div>
+                        <a href="#booking" class="btn-primary">Book Now</a>
+                    </div>
+                    <div class="service-features">
+                        <h4><i class="fas fa-check-circle"></i> What's Included:</h4>
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i> Full day coverage</li>
+                            <li><i class="fas fa-angle-right"></i> Highlight reel (5-10 min)</li>
+                            <li><i class="fas fa-angle-right"></i> Professional editing</li>
+                            <li><i class="fas fa-angle-right"></i> Background music</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">My Work</span>
+                <h2 class="section-title">Portfolio</h2>
+                <p class="section-subtitle">Explore my best projects and creative work</p>
+            </div>
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="wedding">Wedding</button>
+                <button class="filter-btn" data-filter="portrait">Portrait</button>
+                <button class="filter-btn" data-filter="event">Event</button>
+                <button class="filter-btn" data-filter="nature">Nature</button>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="wedding" data-title="Wedding Photography">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop" alt="Wedding">
+                    <div class="gallery-overlay">
+                        <h4>Wedding Photography</h4>
+                        <p>Beach Resort</p>
+                        <div class="gallery-actions">
+                            <button class="gallery-action-btn" data-action="view"><i class="fas fa-eye"></i></button>
+                            <button class="gallery-action-btn" data-action="download"><i class="fas fa-download"></i></button>
+                            <button class="gallery-action-btn" data-action="share"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="portrait" data-title="Portrait Session">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop" alt="Portrait">
+                    <div class="gallery-overlay">
+                        <h4>Portrait Session</h4>
+                        <p>Studio</p>
+                        <div class="gallery-actions">
+                            <button class="gallery-action-btn" data-action="view"><i class="fas fa-eye"></i></button>
+                            <button class="gallery-action-btn" data-action="download"><i class="fas fa-download"></i></button>
+                            <button class="gallery-action-btn" data-action="share"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="nature" data-title="Nature Photography">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=400&fit=crop" alt="Nature">
+                    <div class="gallery-overlay">
+                        <h4>Nature Photography</h4>
+                        <p>Forest</p>
+                        <div class="gallery-actions">
+                            <button class="gallery-action-btn" data-action="view"><i class="fas fa-eye"></i></button>
+                            <button class="gallery-action-btn" data-action="download"><i class="fas fa-download"></i></button>
+                            <button class="gallery-action-btn" data-action="share"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="event" data-title="Corporate Event">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=400&fit=crop" alt="Event">
+                    <div class="gallery-overlay">
+                        <h4>Corporate Event</h4>
+                        <p>Convention Center</p>
+                        <div class="gallery-actions">
+                            <button class="gallery-action-btn" data-action="view"><i class="fas fa-eye"></i></button>
+                            <button class="gallery-action-btn" data-action="download"><i class="fas fa-download"></i></button>
+                            <button class="gallery-action-btn" data-action="share"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="wedding" data-title="Wedding Ceremony">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&h=400&fit=crop" alt="Wedding">
+                    <div class="gallery-overlay">
+                        <h4>Wedding Ceremony</h4>
+                        <p>Garden</p>
+                        <div class="gallery-actions">
+                            <button class="gallery-action-btn" data-action="view"><i class="fas fa-eye"></i></button>
+                            <button class="gallery-action-btn" data-action="download"><i class="fas fa-download"></i></button>
+                            <button class="gallery-action-btn" data-action="share"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="portrait" data-title="Professional Headshot">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" alt="Portrait">
+                    <div class="gallery-overlay">
+                        <h4>Professional Headshot</h4>
+                        <p>Studio</p>
+                        <div class="gallery-actions">
+                            <button class="gallery-action-btn" data-action="view"><i class="fas fa-eye"></i></button>
+                            <button class="gallery-action-btn" data-action="download"><i class="fas fa-download"></i></button>
+                            <button class="gallery-action-btn" data-action="share"><i class="fas fa-share-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Pricing</span>
+                <h2 class="section-title">Choose Your Package</h2>
+                <p class="section-subtitle">Transparent pricing for all photography needs</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-badge">Basic</div>
+                    <h3 class="pricing-title">Starter Package</h3>
+                    <div class="pricing-price">$199<span>/session</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 1 Hour Session</li>
+                        <li><i class="fas fa-check"></i> 20 Edited Photos</li>
+                        <li><i class="fas fa-check"></i> Online Gallery</li>
+                        <li><i class="fas fa-check"></i> Digital Delivery</li>
+                        <li><i class="fas fa-times"></i> Print Credits</li>
+                    </ul>
+                    <a href="#booking" class="btn-primary">Book Now</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Popular</div>
+                    <h3 class="pricing-title">Standard Package</h3>
+                    <div class="pricing-price">$399<span>/session</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 2 Hour Session</li>
+                        <li><i class="fas fa-check"></i> 50 Edited Photos</li>
+                        <li><i class="fas fa-check"></i> Online Gallery</li>
+                        <li><i class="fas fa-check"></i> Digital Delivery</li>
+                        <li><i class="fas fa-check"></i> $50 Print Credits</li>
+                    </ul>
+                    <a href="#booking" class="btn-primary">Book Now</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-badge">Premium</div>
+                    <h3 class="pricing-title">Premium Package</h3>
+                    <div class="pricing-price">$699<span>/session</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Full Day Session</li>
+                        <li><i class="fas fa-check"></i> 100+ Edited Photos</li>
+                        <li><i class="fas fa-check"></i> Online Gallery</li>
+                        <li><i class="fas fa-check"></i> USB Drive</li>
+                        <li><i class="fas fa-check"></i> $150 Print Credits</li>
+                    </ul>
+                    <a href="#booking" class="btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Printing Section -->
+    <section id="printing" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Printing Services</span>
+                <h2 class="section-title">Print Your Memories</h2>
+                <p class="section-subtitle">Professional printing services for your photos</p>
+            </div>
+            
+            <div class="service-detail-card">
+                <div class="service-detail-header">
+                    <div class="service-icon-large"><i class="fas fa-print"></i></div>
+                    <div class="service-header-text">
+                        <h3>Photo Printing</h3>
+                        <p>High-quality photo printing on various sizes</p>
+                    </div>
+                </div>
+                <div class="service-features">
+                    <h4><i class="fas fa-check-circle"></i> What's Included:</h4>
+                    <ul>
+                        <li><i class="fas fa-angle-right"></i> Multiple sizes: 4x6, 5x7, 8x10, 11x14</li>
+                        <li><i class="fas fa-angle-right"></i> Premium photo paper</li>
+                        <li><i class="fas fa-angle-right"></i> High-resolution printing</li>
+                        <li><i class="fas fa-angle-right"></i> Quick turnaround</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-detail-card">
+                <div class="service-detail-header">
+                    <div class="service-icon-large"><i class="fas fa-palette"></i></div>
+                    <div class="service-header-text">
+                        <h3>Canvas Prints</h3>
+                        <p>Beautiful gallery-wrapped canvas prints</p>
+                    </div>
+                </div>
+                <div class="service-features">
+                    <h4><i class="fas fa-check-circle"></i> What's Included:</h4>
+                    <ul>
+                        <li><i class="fas fa-angle-right"></i> Gallery-wrapped canvas</li>
+                        <li><i class="fas fa-angle-right"></i> Multiple sizes</li>
+                        <li><i class="fas fa-angle-right"></i> Ready to hang</li>
+                        <li><i class="fas fa-angle-right"></i> Custom sizing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="videos-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Video Content</span>
+                <h2 class="section-title">Video Gallery</h2>
+                <p class="section-subtitle">Watch our latest video productions</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                        <span class="video-duration">3:45</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>Wedding Highlights 2024</h3>
+                        <p>Beautiful wedding moments</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <i class="fas fa-play-circle"></i>
+                        <span class="video-duration">5:20</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>Portrait Session Preview</h3>
+                        <p>Stunning showcase</p>
+                    </div>
+                </div>
+            </div>
+            <div class="upload-section">
+                <h3><i class="fas fa-cloud-upload-alt"></i> Upload Your Video</h3>
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & drop your video here</p>
+                    <span>or</span>
+                    <button class="btn-primary">Browse Files</button>
+                    <input type="file" id="videoUpload" accept="video/*" hidden>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Upload Section -->
+    <section id="upload" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Upload Center</span>
+                <h2 class="section-title">Upload Images</h2>
+                <p class="section-subtitle">Upload your photos to the gallery</p>
+            </div>
+            
+            <div class="image-upload-container">
+                <div class="upload-card">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Single Image Upload</h3>
+                    <p>Upload one image at a time (Max 10MB)</p>
+                    <form id="singleImageUploadForm">
+                        <div class="upload-dropzone" id="singleUploadZone">
+                            <i class="fas fa-image"></i>
+                            <p>Drag & drop image here</p>
+                            <span>or</span>
+                            <button type="button" class="btn-secondary" onclick="document.getElementById('singleImageInput').click()">Browse Image</button>
+                            <input type="file" id="singleImageInput" name="image" accept="image/*" hidden>
+                        </div>
+                        <div class="upload-preview" id="singleUploadPreview"></div>
+                        <button type="submit" class="btn-primary btn-full">
+                            <i class="fas fa-upload"></i> Upload Image
+                        </button>
+                    </form>
+                </div>
+
+                <div class="upload-card">
+                    <div class="upload-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Multiple Images Upload</h3>
+                    <p>Upload multiple images at once (Max 10 images, 10MB each)</p>
+                    <form id="multipleImageUploadForm">
+                        <div class="upload-dropzone" id="multipleUploadZone">
+                            <i class="fas fa-images"></i>
+                            <p>Drag & drop images here</p>
+                            <span>or</span>
+                            <button type="button" class="btn-secondary" onclick="document.getElementById('multipleImageInput').click()">Browse Images</button>
+                            <input type="file" id="multipleImageInput" name="images" accept="image/*" multiple hidden>
+                        </div>
+                        <div class="upload-preview" id="multipleUploadPreview"></div>
+                        <button type="submit" class="btn-primary btn-full">
+                            <i class="fas fa-upload"></i> Upload All Images
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Uploaded Images Gallery -->
+            <div class="uploaded-gallery-section">
+                <h3><i class="fas fa-photo-video"></i> Uploaded Images</h3>
+                <div class="uploaded-images-grid" id="uploadedImagesGrid">
+                    <!-- Images will be loaded here dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Client Reviews</span>
+                <h2 class="section-title">Testimonials</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Mr Smiley captured our wedding perfectly. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JD</div>
+                        <div><h4>John & Sarah</h4><span>Wedding Client</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Amazing portrait session! The results were stunning!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MK</div>
+                        <div><h4>Michael K.</h4><span>Portrait Client</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Questions</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item active">
+                    <button class="faq-question">
+                        <span>How do I book a session?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Fill out the booking form or contact us directly.</p>
+                    </div>
+                </div>
+                <div class="faq-item active">
+                    <button class="faq-question">
+                        <span>What is included in the package?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Each package includes different features. Check our pricing section.</p>
+                    </div>
+                </div>
+                <div class="faq-item active">
+                    <button class="faq-question">
+                        <span>How long does delivery take?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Standard delivery is 2-3 weeks for photos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Book Now</span>
+                <h2 class="section-title">Book Your Session</h2>
+            </div>
+            <div class="contact-wrapper">
+               contact-info">
+                    <div class=" <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div><h4>Availability</h4><p>Mon-Sat: 9AM-6PM</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+                        <div><h4>Response Time</h4><p>Within 24 hours</p></div>
+                    </div>
+                </div>
+                <form class="contact-form" id="bookingForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="wedding">Wedding Photography</option>
+                            <option value="event">Event Photography</option>
+                            <option value="portrait">Portrait Photography</option>
+                            <option value="videography">Videography</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="package" required>
+                            <option value="">Select Package</option>
+                            <option value="starter">Starter - $199</option>
+                            <option value="standard">Standard - $399</option>
+                            <option value="premium">Premium - $699</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Additional Details" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Book Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="payment-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Secure Payment</span>
+                <h2 class="section-title">Payment</h2>
+            </div>
+            <div class="payment-compact">
+                <div class="payment-methods-row">
+                    <div class="payment-method-btn active" data-method="card">
+                        <i class="fas fa-credit-card"></i><span>Card</span>
+                    </div>
+                    <div class="payment-method-btn" data-method="paypal">
+                        <i class="fab fa-paypal"></i><span>PayPal</span>
+                    </div>
+                </div>
+                <form class="payment-form-compact" id="paymentForm">
+                    <div class="form-group">
+                        <input type="text" name="cardName" placeholder="Name on card" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="cardNumber" placeholder="Card number" maxlength="19" required>
+                    </div>
+                    <div class="form-row-compact">
+                        <div class="form-group">
+                            <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="cvv" placeholder="CVV" maxlength="4" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="amount" placeholder="Amount ($)" required>
+                    </div>
+                    <div class="payment-security-mini">
+                        <i class="fas fa-lock"></i> Secured by SSL
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Contact Me</h2>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                        <div><h4>Email</h4><p>smileymr668@gmail.com</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+                        <div><h4>Phone</h4><p>0614062324</p></div>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="subject" required>
+                            <option value="">Select Subject</option>
+                            <option value="booking">Booking Inquiry</option>
+                            <option value="pricing">Pricing Question</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="subscribe" class="subscribe-section">
+        <div class="container">
+            <div class="subscribe-wrapper">
+                <div class="subscribe-content">
+                    <span class="section-tag">Stay Updated</span>
+                    <h2>Subscribe to Newsletter</h2>
+                    <p>Get the latest updates and exclusive content delivered to your inbox.</p>
+                </div>
+                <div class="subscribe-form">
+                    <div class="input-group">
+                        <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                        <button type="button" id="newsletterBtn" class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-logo"><span>MR</span>SMILEY</div>
+                <p class="footer-tagline">Professional Photography & Videography</p>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-text">© 2026 Mr Smiley Media. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
